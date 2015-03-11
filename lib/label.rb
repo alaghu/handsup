@@ -8,11 +8,29 @@
 
 # 10b. Line Type = Label details. 
 #       Parse and get the following 
-#       Product Line
+#       Product_Schema
 #       Label 
 #       Other Details
+#       Label_Humanized
+#       Date_Parsed
+#       Product_Type
 
 # 10c. Line Type = Others
 #      marke as other and store. Do not parse.
 
 
+# Model it as the following
+# A. The whole file/Label = Label
+# B. Each line = Lines
+
+# Validations on Label
+# If First line of the label does not contain a formed label, return error.
+#
+# Attributes on Label
+# Date_Parsed
+# LabelName (The first Line)
+# 
+
+#
+class Label
+end
