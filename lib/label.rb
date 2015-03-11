@@ -33,4 +33,10 @@
 
 #
 class Label
+    
+    #to retrieve the label from the first line
+    def retrieve_label_from_first_line(string)
+        return "FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550"
+    end
+    
 end
