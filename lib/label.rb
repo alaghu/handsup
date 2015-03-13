@@ -36,7 +36,17 @@ class Label
     
     #to retrieve the label from the first line
     def retrieve_label_from_first_line(string)
-        return "FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550"
+        
+        #obtaining string prior to fullsource
+        pre_fullsource = string.match('fullsource').pre_match
+      
+        #obtaining string post '# ', which is the beginning of the line
+        post_initial_chars = pre_fullsource.match('# ').post_match
+     
+        #removing any unwanted spaces
+        label = post_initial_chars.strip
+        
+        return label
     end
     
 end
