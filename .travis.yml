@@ -1,0 +1,8 @@
+language: ruby
+bundler_args: "--without development"
+# the script's arguments are equivalent to what will be typed in a command line.
+# running the rake command. The rake command looks at Rakefile.
+# The Rakefile in turn has commands it will run run as a 'task' name in the command line
+script: "rake spec"
+rvm:
+- 2.0.0
