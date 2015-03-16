@@ -1,1 +1,0 @@
-{"filter":false,"title":"[P] /lib/label.rb","undoManager":{"mark":0,"position":-1,"stack":[]},"preview":{"path":"/lib/label.rb","previewer":"preview.raw"},"timestamp":1426296830811,"hash":"67452301efcdab8998badcfe10325476c3d2e1f0"}

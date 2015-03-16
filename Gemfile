@@ -2,5 +2,5 @@ source "https://rubygems.org"
 
 gem 'rspec' 
 
-# do not require this gem anymore
-#gem 'verbal_expressions', '~> 0.1.5'
+# making regular expression more epress
+gem 'verbal_expressions', '~> 0.1.5'

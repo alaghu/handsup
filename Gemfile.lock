@@ -15,9 +15,11 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    verbal_expressions (0.1.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rspec
+  verbal_expressions (~> 0.1.5)
