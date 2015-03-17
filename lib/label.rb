@@ -33,9 +33,9 @@ require 'verbal_expressions'
 
 #
 class Label
-  # to retrieve the label from the first line
-  # => The first_line will be some thing like
-  # =>'# FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
+  # To retrieve the label from the first line
+  # The first_line will be some thing like
+  # 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
   # Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
   def retrieve_label_from_first_line(first_line)
     # obtaining first_line prior to fullsource
@@ -50,30 +50,26 @@ class Label
 
   # to split label up
   def retrieve_date_from_label(label)
-    # Logic 1
-    # Match the last dot
-    # obtain the 6 characters to the left
-    # FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550
+    @date = nil
     get_series = VerEx.new do
       start_of_line
       begin_capture 'series'
       anything_but '_'
       end_capture
-      #
+      # First Underscore
       find '_'
-      # another begin
       begin_capture 'version'
       anything_but '_'
       end_capture
-      #
+      # Second Underscore
       find '_'
       begin_capture 'platforms'
       anything_but '_'
       end_capture
-      # another begin
+      # Third Underscore
+      find '_'
       begin_capture 'date'
       anything_but '_'
-      anything_but '\.'
       end_capture
     end
 
@@ -82,13 +78,15 @@ class Label
       puts match_values['version']
       puts match_values['platforms']
       puts match_values['date']
+      @date = match_values['date']
     end
 
-    # Logic 2
-    # Match the last underscore (_)
-    # obtain the 6 characters till the dot (.)
-    # convert to date type
-    # Return the obtained date in the following format
-    '03-Jan-2015'
+    @date
+  end
+  def validate_label_pattern(label)
+    # First Check - 3 underscores
+    count_underscores = VerEx.new do
+      start_of_line
+    end
   end
 end
