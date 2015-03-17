@@ -33,6 +33,12 @@ require 'verbal_expressions'
 
 #
 class Label
+  # This class will attempt to decipher the label
+  # Should have the following methods
+  # retrieve_segments_from_label
+  # humanize_label_date
+  # validate_label
+  # 
   # To retrieve the label from the first line
   # The first_line will be some thing like
   # 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
