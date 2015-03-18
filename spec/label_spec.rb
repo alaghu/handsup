@@ -20,6 +20,7 @@ describe Label, '#label' do
     expect(a_new_label.version).to eq('Blank')
     expect(a_new_label.platform).to eq('Blank')
     expect(a_new_label.date).to eq('Blank')
+    expect(a_new_label.validation_status).to eq('Blank')
   end
 
   it 'should come back with 03-Jan-2015' do
@@ -28,9 +29,21 @@ describe Label, '#label' do
     expect(date_from_label).to eq('150103.1550')
   end
 
-  it 'should check for 3 underscores as a prereq for a lable' do
-    label = Label.new
+  it 'should validate only 3 underscores in a label' do
+    validating_label = Label.new
 
-    number_of_underscore = label.validate_label_pattern('FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550')
+    validating_label.validate_label('FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550')
+    
+    expect(validating_label.validation_status).to eq('success')
+    
   end
+  
+  it 'should fail in validate if more than 3 underscores' do
+    validating_label = Label.new
+
+    validating_label.validate_label('FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550_')
+    
+    expect(validating_label.validation_status).to eq('failed validation')
+  end
+  
 end

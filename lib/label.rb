@@ -12,29 +12,28 @@ class Label
 
   DEFAULT_VALUE = 'Blank'
 
-  attr_reader :series, :version, :platform, :date
+  attr_reader :series, :version, :platform, :date, :validation_status
 
   def initialize
     @series = DEFAULT_VALUE
     @version = DEFAULT_VALUE
     @platform = DEFAULT_VALUE
     @date = DEFAULT_VALUE
+    @validation_status = DEFAULT_VALUE
   end
 
-  # To retrieve the label from the first line
-  # The first_line will be some thing like
-  # 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
-  # Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
-  # TODO: Move this method to a differen class
-  def retrieve_label_from_first_line(first_line)
-    # obtaining first_line prior to fullsource
-    pre_fullsource = first_line.match('fullsource').pre_match
+  # This will validate if there are 3 underscores
+  def validate_label(label)
+    # defining a pattern
+    pattern_for_underscores = VerEx.new do
+      find '_'
+    end
 
-    # obtaining first_line post '# ', which is the beginning of the line
-    post_initial_chars = pre_fullsource.match('# ').post_match
-
-    # removing any unwanted spaces
-    post_initial_chars.strip
+    # string.scan(pattern_to_scan)
+    if label.scan(pattern_for_underscores).count == 3
+      then @validation_status = 'success'
+    else @validation_status = 'failed validation'
+    end
   end
 
   # to split label up
@@ -70,13 +69,23 @@ class Label
       @date = match_values['date']
     end
 
-    @date
+  # To retrieve the label from the first line
+  # The first_line will be some thing like
+  # 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
+  # Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
+  # TODO: Move this method to a differen class
+  def retrieve_label_from_first_line(first_line)
+    # obtaining first_line prior to fullsource
+    pre_fullsource = first_line.match('fullsource').pre_match
+
+    # obtaining first_line post '# ', which is the beginning of the line
+    post_initial_chars = pre_fullsource.match('# ').post_match
+
+    # removing any unwanted spaces
+    post_initial_chars.strip
   end
-  def validate_label_pattern(label)
-    # First Check - 3 underscores
-    count_underscores = VerEx.new do
-      start_of_line
-    end
+
+    @date
   end
 end
 
