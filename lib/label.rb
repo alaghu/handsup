@@ -69,7 +69,10 @@ class Label
       @date = match_values['date']
     end
 
-  # To retrieve the label from the first line
+    @date
+  end
+  
+    # To retrieve the label from the first line
   # The first_line will be some thing like
   # 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
   # Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
@@ -84,9 +87,8 @@ class Label
     # removing any unwanted spaces
     post_initial_chars.strip
   end
-
-    @date
-  end
+  
+  
 end
 
 # This script will attempt to open a text file and parse its contents
