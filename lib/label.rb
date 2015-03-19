@@ -3,17 +3,11 @@ require 'verbal_expressions'
 
 # The Label class
 class Label
-  # This class will attempt to decipher the label
-  # Should have the following methods
-
-  # retrieve_segments_from_label
-  # humanize_label_date
-  # validate_label
+  # TODO: humanize_label_date
 
   DEFAULT_VALUE = 'Blank'
 
   attr_reader :series, :version, :platform, :date, :validation_status
-
   def initialize
     @series = DEFAULT_VALUE
     @version = DEFAULT_VALUE
@@ -22,7 +16,7 @@ class Label
     @validation_status = DEFAULT_VALUE
   end
 
-  # This will validate if there are 3 underscores
+  # Validating if there are 3 underscores
   def validate_label(label)
     # defining a pattern
     pattern_for_underscores = VerEx.new do
@@ -31,15 +25,18 @@ class Label
 
     # string.scan(pattern_to_scan)
     if label.scan(pattern_for_underscores).count == 3
+
       then @validation_status = 'success'
+
     else @validation_status = 'failed validation'
+
     end
   end
 
-  # to split label up
-  def retrieve_date_from_label(label)
-    @date = nil
-    get_series = VerEx.new do
+  # TODO: rename method
+  def retrieve_segments_from_label(label)
+    # defining the pattern through englished regular expression
+    pattern_for_segments = VerEx.new do
       start_of_line
       begin_capture 'series'
       anything_but '_'
@@ -61,34 +58,15 @@ class Label
       end_capture
     end
 
-    label.match(get_series) do |match_values|
-      puts match_values['series']
-      puts match_values['version']
-      puts match_values['platforms']
-      puts match_values['date']
+    label.match(pattern_for_segments) do |match_values|
+      @series = match_values['series']
+      @version =  match_values['version']
+      @platform = match_values['platforms']
       @date = match_values['date']
     end
 
     @date
   end
-  
-    # To retrieve the label from the first line
-  # The first_line will be some thing like
-  # 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
-  # Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
-  # TODO: Move this method to a differen class
-  def retrieve_label_from_first_line(first_line)
-    # obtaining first_line prior to fullsource
-    pre_fullsource = first_line.match('fullsource').pre_match
-
-    # obtaining first_line post '# ', which is the beginning of the line
-    post_initial_chars = pre_fullsource.match('# ').post_match
-
-    # removing any unwanted spaces
-    post_initial_chars.strip
-  end
-  
-  
 end
 
 # This script will attempt to open a text file and parse its contents
@@ -119,5 +97,22 @@ end
 # If First line of the label does not contain a formed label, return error.
 #
 # Attributes on Label
-# Date_Parsed
-# LabelName (The first Line)
+#  Date_Parsed
+#  LabelName (The first Line)
+
+# To retrieve the label from the first line
+# The first_line will be some thing like
+# 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
+# Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
+# TODO: Move this method to a differen class
+#  def retrieve_label_from_first_line(first_line)
+#
+# obtaining first_line prior to fullsource
+#   pre_fullsource = first_line.match('fullsource').pre_match
+
+# obtaining first_line post '# ', which is the beginning of the line
+#   post_initial_chars = pre_fullsource.match('# ').post_match
+
+#   # removing any unwanted spaces
+#   post_initial_chars.strip
+#  end
