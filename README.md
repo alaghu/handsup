@@ -5,3 +5,5 @@
 [![Code Climate](https://codeclimate.com/github/alaghu/handsup/badges/gpa.svg)](https://codeclimate.com/github/alaghu/handsup)
 
 [![PullReview stats](https://www.pullreview.com/github/alaghu/handsup/badges/master.svg?)](https://www.pullreview.com/github/alaghu/handsup/reviews/master)
+
+[![Inline docs](http://inch-ci.org/github/alaghu/Handsup.svg?branch=master)](http://inch-ci.org/github/alaghu/Handsup)
