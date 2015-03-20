@@ -73,6 +73,12 @@ class Label
     # remember you need to call retrieve segments from label
     # TODO: need to find how to call retrieve segments from label within this
     def retrieve_date_time
+      # before we retrieve date and time, we need obtain date_time segment
+      
+      self.retrieve_segments_from_label
+      
+      
+      
       # defining the pattern through englished regular expression
       # even though it is only a .
       pattern_for_dot = VerEx.new do

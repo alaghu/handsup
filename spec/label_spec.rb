@@ -4,7 +4,7 @@ require 'label'
 describe Label do
   # This is for testing initialization
   it 'has to have attributes set to Blank' do
-    #setting up a variable with test label data
+    # setting up a variable with test label data
     a_sample_label = 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
     a_new_label = Label.new(a_sample_label)
 
@@ -33,7 +33,6 @@ describe Label do
   it 'should come back with a date and time' do
     a_sample_label = 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
     a_new_label = Label.new(a_sample_label)
-    a_new_label.retrieve_segments_from_label
     a_new_label.retrieve_date_time
     
     expect(a_new_label.date).to eq('150103')
