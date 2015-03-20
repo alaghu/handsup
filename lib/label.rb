@@ -1,18 +1,22 @@
 # A gem that makes Regular Expression as english statements
 require 'verbal_expressions'
 
-# The Label class
+# The Label class - Attempting retrieve relavant information from a label
 class Label
   # TODO: humanize_label_date
 
   DEFAULT_VALUE = 'Blank'
-
-  attr_reader :series, :version, :platform, :date, :validation_status
-  def initialize
+  # Currently having these attributes as read only.
+  # also having date_time as a seperate variable to obtain segment 4 of a label
+  attr_reader :name, :series, :version, :platform, :date_time, :date,:time, :validation_status
+  def initialize(name)
+    @name = name
     @series = DEFAULT_VALUE
     @version = DEFAULT_VALUE
     @platform = DEFAULT_VALUE
+    @date_time = DEFAULT_VALUE
     @date = DEFAULT_VALUE
+    @time = DEFAULT_VALUE
     @validation_status = DEFAULT_VALUE
   end
 
@@ -53,7 +57,7 @@ class Label
       end_capture
       # Third Underscore
       find '_'
-      begin_capture 'date'
+      begin_capture 'date_time'
       anything_but '_'
       end_capture
     end
@@ -62,9 +66,13 @@ class Label
       @series = match_values['series']
       @version =  match_values['version']
       @platform = match_values['platforms']
-      @date = match_values['date']
+      @date_time = match_values['date_time']
     end
-
+    
+    def retrieve_date_time(date_time)
+      @date = date_time.match('\.').pre_match
+      @time = date_time.match('\.').post_match
+    end
     @date
   end
 end
