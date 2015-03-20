@@ -8,7 +8,8 @@ class Label
   DEFAULT_VALUE = 'Blank'
   # Currently having these attributes as read only.
   # also having date_time as a seperate variable to obtain segment 4 of a label
-  attr_reader :name, :series, :version, :platform, :date_time, :date,:time, :validation_status
+  attr_reader :name, :series, :version, :platform, :date_time, :date, :time
+  attr_reader :validation_status
   def initialize(name)
     @name = name
     @series = DEFAULT_VALUE
@@ -68,12 +69,11 @@ class Label
       @platform = match_values['platforms']
       @date_time = match_values['date_time']
     end
-    
+
     def retrieve_date_time(date_time)
       @date = date_time.match('\.').pre_match
       @time = date_time.match('\.').post_match
     end
-    @date
   end
 end
 
