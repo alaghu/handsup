@@ -22,7 +22,7 @@ describe Label do
     a_sample_label = 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
     label_segments = Label.new(a_sample_label)
   
-    label_segments.retrieve_segments_from_label(a_sample_label)
+    label_segments.retrieve_segments_from_label
 
     expect(label_segments.series).to eq('FAINTEG')
     expect(label_segments.version).to eq('11.1.9.2.0')
@@ -33,8 +33,8 @@ describe Label do
   it 'should come back with a date and time' do
     a_sample_label = 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
     a_new_label = Label.new(a_sample_label)
-    
-    a_new_label.retrieve_date_time('150103.1550')
+    a_new_label.retrieve_segments_from_label
+    a_new_label.retrieve_date_time
     
     expect(a_new_label.date).to eq('150103')
     expect(a_new_label.time).to eq('1550')
@@ -44,8 +44,8 @@ describe Label do
   it 'should have only 3 underscores' do
     a_sample_label = 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
     validating_label = Label.new(a_sample_label)
-
-    validating_label.validate_label(a_sample_label)
+    
+    validating_label.validate_label
 
     expect(validating_label.validation_status).to eq('success')
   end
@@ -54,7 +54,7 @@ describe Label do
     a_sample_negative_label = 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550_'
     validating_label = Label.new(a_sample_negative_label)
 
-    validating_label.validate_label('FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550_')
+    validating_label.validate_label
 
     expect(validating_label.validation_status).to eq('failed validation')
   end

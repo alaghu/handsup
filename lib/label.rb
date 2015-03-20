@@ -22,14 +22,14 @@ class Label
   end
 
   # Validating if there are 3 underscores
-  def validate_label(label)
+  def validate_label
     # defining a pattern
     pattern_for_underscores = VerEx.new do
       find '_'
     end
 
     # string.scan(pattern_to_scan)
-    if label.scan(pattern_for_underscores).count == 3
+    if @name.scan(pattern_for_underscores).count == 3
 
       then @validation_status = 'success'
 
@@ -39,7 +39,7 @@ class Label
   end
 
   # TODO: rename method
-  def retrieve_segments_from_label(label)
+  def retrieve_segments_from_label
     # defining the pattern through englished regular expression
     pattern_for_segments = VerEx.new do
       start_of_line
@@ -63,16 +63,24 @@ class Label
       end_capture
     end
 
-    label.match(pattern_for_segments) do |match_values|
+    @name.match(pattern_for_segments) do |match_values|
       @series = match_values['series']
       @version =  match_values['version']
       @platform = match_values['platforms']
       @date_time = match_values['date_time']
     end
 
-    def retrieve_date_time(date_time)
-      @date = date_time.match('\.').pre_match
-      @time = date_time.match('\.').post_match
+    # remember you need to call retrieve segments from label
+    # TODO: need to find how to call retrieve segments from label within this
+    def retrieve_date_time
+      # defining the pattern through englished regular expression
+      # even though it is only a .
+      pattern_for_dot = VerEx.new do
+        find '.'
+      end
+
+      @date = @date_time.match(pattern_for_dot).pre_match
+      @time = @date_time.match(pattern_for_dot).post_match
     end
   end
 end
