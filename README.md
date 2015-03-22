@@ -2,7 +2,8 @@ A Simple Project to obtain different parts of a 'label'. This is my first attemp
 to learn Ruby (using classes, accessor methods which are all new concepts to me) 
 using test driven Development.
 
-I relied heavily on rubocop, and the following tools. 
+I relied heavily on <a href="https://github.com/bbatsov/rubocop" target="_blank">
+rubocop</a>, and the following tools. 
 
 <a href="https://travis-ci.org/alaghu/handsup" target="_blank"><img src="https://travis-ci.org/alaghu/handsup.svg?branch=master"></a>
 
@@ -15,15 +16,3 @@ I relied heavily on rubocop, and the following tools.
 <a href="http://inch-ci.org/github/alaghu/Handsup" target="_blank"><img src="http://inch-ci.org/github/alaghu/Handsup.svg?branch=master"></a>
 
 Thanks guys!
-
-Old HREFS
-[![Coverage Status](https://coveralls.io/repos/alaghu/handsup/badge.svg)](https://coveralls.io/r/alaghu/handsup)
-
-[![Code Climate](https://codeclimate.com/github/alaghu/handsup/badges/gpa.svg)](https://codeclimate.com/github/alaghu/handsup)
-
-[![PullReview stats](https://www.pullreview.com/github/alaghu/handsup/badges/master.svg?)](https://www.pullreview.com/github/alaghu/handsup/reviews/master)
-
-[![Inline docs](http://inch-ci.org/github/alaghu/Handsup.svg?branch=master)](http://inch-ci.org/github/alaghu/Handsup)
-
-
-
