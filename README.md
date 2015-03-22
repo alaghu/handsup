@@ -4,11 +4,19 @@ using test driven Development.
 
 I relied heavily on rubocop, and the following tools. 
 
-<a href="https://travis-ci.org/alaghu/handsup" target="_blank"><img src= "https://travis-ci.org/alaghu/handsup.svg?branch=master">Build Status</a>
+<a href="https://travis-ci.org/alaghu/handsup" target="_blank"><img src="https://travis-ci.org/alaghu/handsup.svg?branch=master"></a>
 
+<a href="https://coveralls.io/r/alaghu/handsup" target="_blank"><img src="https://coveralls.io/repos/alaghu/handsup/badge.svg"></a>
 
-[![Build Status](https://travis-ci.org/alaghu/handsup.svg?branch=master)](https://travis-ci.org/alaghu/handsup)
+<a href="https://codeclimate.com/github/alaghu/handsup" target="_blank"><img src="https://codeclimate.com/github/alaghu/handsup/badges/gpa.svg"></a>
 
+<a href="https://www.pullreview.com/github/alaghu/handsup/reviews/master" target="_blank"><img src="https://www.pullreview.com/github/alaghu/handsup/badges/master.svg?"></a>
+
+<a href="http://inch-ci.org/github/alaghu/Handsup" target="_blank"><img src="http://inch-ci.org/github/alaghu/Handsup.svg?branch=master"></a>
+
+Thanks guys!
+
+Old HREFS
 [![Coverage Status](https://coveralls.io/repos/alaghu/handsup/badge.svg)](https://coveralls.io/r/alaghu/handsup)
 
 [![Code Climate](https://codeclimate.com/github/alaghu/handsup/badges/gpa.svg)](https://codeclimate.com/github/alaghu/handsup)
@@ -17,5 +25,5 @@ I relied heavily on rubocop, and the following tools.
 
 [![Inline docs](http://inch-ci.org/github/alaghu/Handsup.svg?branch=master)](http://inch-ci.org/github/alaghu/Handsup)
 
-Thanks guys.
+
 
