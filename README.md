@@ -1,4 +1,4 @@
-A Simple Project to obtain different parts of a 'label'. This is my first attempt
+A simple project to obtain different parts of a 'label'. This is my first attempt
 to learn Ruby (using classes, accessor methods which are all new concepts to me) 
 using test driven Development.
 
