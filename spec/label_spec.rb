@@ -72,8 +72,9 @@ describe Label do
     it 'should not have more than 3 underscores' do
       # invoking the validate label
       a_new_label.validate_label
+      failed_message = 'validation failed - I did not get 3 underscores'
 
-      expect(a_new_label.validation_status).to eq('failed validation')
+      expect(a_new_label.validation_status).to eq(failed_message)
     end
   end
 end

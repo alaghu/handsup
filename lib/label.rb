@@ -8,7 +8,13 @@ class Label
   DEFAULT_VALUE = 'Blank'
   # Currently having these attributes as read only.
   # also having date_time as a seperate variable to obtain segment 4 of a label
-  attr_reader :name, :series, :version, :platform, :date_time, :date, :time
+  attr_reader :name
+  attr_reader :series
+  attr_reader :version
+  attr_reader :platform
+  attr_reader :date_time
+  attr_reader :date
+  attr_reader :time
   attr_reader :validation_status
   def initialize(name)
     @name = name
@@ -33,7 +39,7 @@ class Label
 
       then @validation_status = 'success'
 
-    else @validation_status = 'failed validation'
+    else @validation_status = 'validation failed - I did not get 3 underscores'
 
     end
   end
