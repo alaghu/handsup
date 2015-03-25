@@ -1,11 +1,13 @@
+require 'verbal_expressions'
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
 ## Uncomment and set this to only include directories you want to watch
- directories %w(lib spec)
+# Be cautios to comment the below line. Would scan for all directories.
+directories %w(lib spec)
 
 ## Uncomment to clear the screen before every task
-clearing :on
+# clearing :on
 
 ## Guard internally checks for changes in the Guardfile and exits.
 ## If you want Guard to automatically start up again, run guard in a
@@ -22,11 +24,40 @@ clearing :on
 #  $ ln -s config/Guardfile .
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
-group :red_green_refactor, halt_on_fail: true do
-  guard :rspec, cmd: 'rspec -f d' do
-    watch(%r{^spec/.+_spec\.rb$})
-    watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-    watch('spec/spec_helper.rb')  { "spec" }
-  end
+
+guard :rspec, cmd: 'rspec -f d' do
+    
+    # I am using verbal expression to humanize the regular expression
+    # For debugging pattern use :
+    # puts pattern_for_lib.source
+    
+    # Pattern for any file ending with rb in lib folder
+    pattern_for_lib = VerEx.new do
+      start_of_line  
+      find 'lib'
+      find '/'  
+      anything
+      find '.rb'
+      end_of_line
+    end  
+
+    # Pattern for any file ending with _spec.rb in spec folder
+    pattern_for_spec = VerEx.new do
+      start_of_line  
+      find 'spec'
+      find '/'  
+      anything
+      find '_spec.rb'
+      end_of_line
+    end  
+    
+    # Running all tests if lib or spec files changes
+    watch(pattern_for_lib) { "spec" }
+    watch(pattern_for_spec) { "spec" }
+    
+    # For Additional debugging purposes look at 
+    # https://github.com/guard/guard
+    # /wiki/Understanding-Guard#heres-a-incorrect-example
 
 end
+

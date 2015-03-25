@@ -12,8 +12,6 @@ gem 'coveralls', require: false
 # 
 group :development do
   gem 'guard'
-  # TODO: - configure giard file properly. till then commented out.
-  #gem 'guard-rubocop'
   gem 'guard-rspec'
 end
 
