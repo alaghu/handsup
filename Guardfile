@@ -61,7 +61,7 @@ group :red_green_refactor, halt_on_fail: true do
     # /wiki/Understanding-Guard#heres-a-incorrect-example
   end
 
-  guard :rubocop, all_on_start: false  do
+  guard :rubocop, all_on_start: false do
     # Running all tests if lib or spec files changes
     # watch('lib/label.rb')
     watch(pattern_for_lib)

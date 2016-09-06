@@ -98,8 +98,8 @@ DEPENDENCIES
   guard
   guard-rspec
   guard-rubocop
-  rspec
-  verbal_expressions (~> 0.1.5)
+  rspec (= 3.5)
+  verbal_expressions (= 0.1.5)
 
 BUNDLED WITH
    1.12.5

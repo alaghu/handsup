@@ -5,7 +5,7 @@ require 'verbal_expressions'
 class Label
   # TODO: humanize_label_date
 
-  DEFAULT_VALUE = 'Blank'
+  DEFAULT_VALUE = 'Blank'.freeze
   # Currently having these attributes as read only.
   # also having date_time as a seperate variable to obtain segment 4 of a label
   attr_reader :name
@@ -27,7 +27,8 @@ class Label
     @validation_status = DEFAULT_VALUE
   end
 
-  # Validating if there are 3 underscores
+  # Validating different patterns
+  # Returns validation_status as success
   def validate_label
     # defining a pattern
     pattern_for_underscores = VerEx.new do
@@ -75,25 +76,22 @@ class Label
       @platform = match_values['platforms']
       @date_time = match_values['date_time']
     end
+  end
 
-    # remember you need to call retrieve segments from label
-    # TODO: need to find how to call retrieve segments from label within this
-    def retrieve_date_time
-      # before we retrieve date and time, we need obtain date_time segment
-      
-      self.retrieve_segments_from_label
-      
-      
-      
-      # defining the pattern through englished regular expression
-      # even though it is only a .
-      pattern_for_dot = VerEx.new do
-        find '.'
-      end
+  # remember you need to call retrieve segments from label
+  # TODO: need to find how to call retrieve segments from label within this
+  def retrieve_date_time
+    # before we retrieve date and time, we need obtain date_time segment
+    # self.retrieve_segments_from_label
 
-      @date = @date_time.match(pattern_for_dot).pre_match
-      @time = @date_time.match(pattern_for_dot).post_match
-    end
+    # defining the pattern through englished regular expression
+    # even though it is only a .
+    # pattern_for_dot = VerEx.new do
+    #   find '.'
+    # end
+
+    @date = @date_time.match(pattern_for_dot).pre_match
+    @time = @date_time.match(pattern_for_dot).post_match
   end
 end
 
@@ -132,7 +130,7 @@ end
 # The first_line will be some thing like
 # 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
 # Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
-# TODO: Move this method to a differen class
+# TODO: Move this method to a differen clas
 #  def retrieve_label_from_first_line(first_line)
 #
 # obtaining first_line prior to fullsource
