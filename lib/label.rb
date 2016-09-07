@@ -41,6 +41,7 @@ class Label
     # Invoking the different methods
     validate_label
     retrieve_segments_from_label if @validation_status == 'Success!'
+    retrieve_date_time if @validation_status == 'Success!'
   end
 
   # Validating different patterns
@@ -48,8 +49,8 @@ class Label
   def validate_label
     # inoke the validation methods
     validate_three_underscores
-    validate_max_two_dots_in_the_end
-    is_it_a_scratch
+    # validate_max_two_dots_in_the_end
+    # is_it_a_scratch
   end
 
   # A label will have only three underscores
@@ -116,64 +117,7 @@ class Label
   # remember you need to call retrieve segments from label
   # TODO: need to find how to call retrieve segments from label within this
   def retrieve_date_time
-    # before we retrieve date and time, we need obtain date_time segment
-    # self.retrieve_segments_from_label
-
-    # defining the pattern through englished regular expression
-    # even though it is only a .
-    # pattern_for_dot = VerEx.new do
-    #   find '.'
-    # end
-
-    @date = @date_time.match(pattern_for_dot).pre_match
-    @time = @date_time.match(pattern_for_dot).post_match
+    @date = @date_time.split('.').first
+    @time = @date_time.split('.').last
   end
 end
-
-# This script will attempt to open a text file and parse its contents
-# The script should identify different types of
-# 10 Lines - a. Remarks or comments , b. Label details , and c. Other
-
-# Depending on the line type, do the following
-# 10a. Line Type = Comments
-#      ignore. Do not parse
-
-# 10b. Line Type = Label details.
-#       Parse and get the following
-#       Product_Schema
-#       Label
-#       Other Details
-#       Label_Humanized
-#       Date_Parsed
-#       Product_Type
-
-# 10c. Line Type = Others
-#      marke as other and store. Do not parse.
-
-# Model it as the following
-# A. The whole file/Label = Label
-# B. Each line = Lines
-
-# Validations on Label
-# If First line of the label does not contain a formed label, return error.
-#
-# Attributes on Label
-#  Date_Parsed
-#  LabelName (The first Line)
-
-# To retrieve the label from the first line
-# The first_line will be some thing like
-# 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550 fullsource file'
-# Would return => 'FAINTEG_11.1.9.2.0_PLATFORMS_150103.1550'
-# TODO: Move this method to a differen clas
-#  def retrieve_label_from_first_line(first_line)
-#
-# obtaining first_line prior to fullsource
-#   pre_fullsource = first_line.match('fullsource').pre_match
-
-# obtaining first_line post '# ', which is the beginning of the line
-#   post_initial_chars = pre_fullsource.match('# ').post_match
-
-#   # removing any unwanted spaces
-#   post_initial_chars.strip
-#  end

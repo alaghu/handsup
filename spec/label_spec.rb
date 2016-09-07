@@ -28,8 +28,8 @@ describe Label do
       expect(a_new_label.version).to eq('11.1.9.2.0')
       expect(a_new_label.platform).to eq('PLATFORMS')
       expect(a_new_label.date_time).to eq('150103.1550')
-      # expect(a_new_label.date).to eq('150103')
-      # expect(a_new_label.time).to eq('1550')
+      expect(a_new_label.date).to eq('150103')
+      expect(a_new_label.time).to eq('1550')
       expect(a_new_label.validation_status).to eq('Success!')
     end
 
