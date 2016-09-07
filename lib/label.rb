@@ -16,6 +16,7 @@ class Label
   attr_reader :date
   attr_reader :time
   attr_reader :validation_status
+  attr_reader :message
   def initialize(name)
     @name = name
     @series = DEFAULT_VALUE
@@ -25,25 +26,32 @@ class Label
     @date = DEFAULT_VALUE
     @time = DEFAULT_VALUE
     @validation_status = DEFAULT_VALUE
+    
+    validate_label
+     retrieve_segments_from_label if @validation_status == 'Success!'
+      
   end
 
   # Validating different patterns
   # Returns validation_status as success
   def validate_label
-    # defining a pattern
-    pattern_for_underscores = VerEx.new do
-      find '_'
-    end
-
+    # inoke the validation methods
+    validate_three_underscores
+  end
+  
+  def validate_three_underscores
     # string.scan(pattern_to_scan)
-    if @name.scan(pattern_for_underscores).count == 3
-
-      then @validation_status = 'success'
-
-    else @validation_status = 'validation failed - I did not get 3 underscores'
-
+    if 
+      @name.scan('_').count == 3
+    then 
+      @validation_status = 'Success!'
+      @message = 'Found three underscores.'
+    else 
+      @validation_status = 'Failed.' 
+      @message = "Could not find exactly three underscores."
     end
   end
+  
 
   # TODO: rename method
   def retrieve_segments_from_label
