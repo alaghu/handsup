@@ -27,8 +27,10 @@ class Label
     @time = DEFAULT_VALUE
     @validation_status = DEFAULT_VALUE
     
+    
     validate_label
-     retrieve_segments_from_label if @validation_status == 'Success!'
+    retrieve_segments_from_label if @validation_status == 'Success!'
+    is_it_a_scratch
       
   end
 
@@ -37,8 +39,10 @@ class Label
   def validate_label
     # inoke the validation methods
     validate_three_underscores
+    validate_max_two_dots_in_the_end
   end
   
+  # A label will have only three underscores
   def validate_three_underscores
     # string.scan(pattern_to_scan)
     if 
@@ -52,13 +56,29 @@ class Label
     end
   end
   
+  # A label will have maximum of two dots from date
+  # Ex 1 : 150103.1550 
+  # Ex 2 : 150103.1550.s
+  def validate_max_two_dots_in_the_end
+    # search in the last 7 characters there is only two dots
+    length_of_label = @name.length
+    
+    last_seven_chars = @name[(length_of_label - 7)..length_of_label]
+    if last_seven_chars.scan('.').count > 2
+      @validation_status = 'Failed'
+      @message = 
+    
+  end
+  
 
   # TODO: rename method
   def retrieve_segments_from_label
     # defining the pattern through englished regular expression
+    # This is called capturing 
+    # https://github.com/ryan-endacott/verbal_expressions#regex-capturing
     pattern_for_segments = VerEx.new do
       start_of_line
-      begin_capture 'series'
+      begin_capture 'series' # Named Capture
       anything_but '_'
       end_capture
       # First Underscore
@@ -77,7 +97,8 @@ class Label
       anything_but '_'
       end_capture
     end
-
+    
+    # Passing the named captures to retrieve the values
     @name.match(pattern_for_segments) do |match_values|
       @series = match_values['series']
       @version =  match_values['version']
